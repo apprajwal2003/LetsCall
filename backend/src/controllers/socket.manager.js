@@ -5,4 +5,4 @@ const connectToSocket = (server) => {
   return io;
 };
 
-export { connectToSocket };
+export default connectToSocket;
