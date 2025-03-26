@@ -1,0 +1,20 @@
+.signUpPage .container-fluid {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.signUpPage .photo img {
+  object-fit: cover;
+}
+
+.signUpPage .login {
+  text-align: center;
+}
+
+.signUpPage form {
+  max-width: 350px;
+  width: 100%;
+}

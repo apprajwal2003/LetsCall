@@ -27,10 +27,31 @@
   font-weight: 600;
 }
 
+.landingPageContainer nav .navBarOptions a {
+  color: white;
+  text-decoration: none;
+}
+
+.landingPageContainer nav .navBarOptions a:hover {
+  color: #fff340;
+}
+
 .landingPageContainer .landingPageMainContent {
   padding-inline: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 70vh;
+}
+
+.landingPageContainer .landingPageMainContent .content {
+  font-weight: 600;
+}
+
+.getStartedButton {
+  background-color: #ffd000;
+  font-weight: 400;
+  padding: 0.2rem 1rem;
+  border-radius: 15px;
+  margin-left: 25%;
 }
