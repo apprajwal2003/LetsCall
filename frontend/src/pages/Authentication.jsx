@@ -1,21 +1,34 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import "./SignInPage.css";
-import axios from "axios";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
+import "../pageStyles/Authentication.css";
+import httpStatus from "http-status";
 
-export default function SignInPage() {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const initialForm = searchParams.get("form") === "1" ? 1 : 0;
-
-  const [form, setForm] = useState(initialForm);
-  const [username, setUserName] = useState("");
+export default function Authentication() {
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [error, setError] = useState();
 
-  const handleSubmit = (e) => {
+  const { form, setForm, handleSignUp, handleLogin } = useContext(AuthContext);
+
+  const handleAuth = async (e) => {
+    setError("");
     e.preventDefault();
-    axios;
+    try {
+      if (form === 0) {
+        //login
+        let result = await handleLogin(username, password);
+      }
+      if (form === 1) {
+        //signup
+        let result = await handleSignUp(name, username, password);
+        setPassword("");
+        setName("");
+      }
+    } catch (err) {
+      let message = err.response.data.message;
+      setError(message);
+    }
   };
 
   return (
@@ -37,7 +50,10 @@ export default function SignInPage() {
                 className={
                   form === 0 ? "btn btn-primary" : "btn btn-outline-primary"
                 }
-                onClick={() => setForm(0)}
+                onClick={() => {
+                  setForm(0);
+                  setError("");
+                }}
               >
                 Login
               </button>
@@ -45,22 +61,25 @@ export default function SignInPage() {
                 className={
                   form === 1 ? "btn btn-primary" : "btn btn-outline-primary"
                 }
-                onClick={() => setForm(1)}
+                onClick={() => {
+                  setForm(1);
+                  setError("");
+                }}
               >
                 SignUp
               </button>
             </div>
 
-            <form className="w-75" onSubmit={handleSubmit}>
+            <form className="w-75" onSubmit={handleAuth}>
               {form === 1 ? (
                 <div className="form-floating mb-3">
                   <input
                     type="text"
                     className="form-control"
                     id="floatingInput"
-                    placeholder="name@example.com"
-                    value={username}
-                    onChange={(e) => setUserName(e.target.value)}
+                    placeholder="user123"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                   <label htmlFor="floatingInput">Name</label>
                 </div>
@@ -70,14 +89,14 @@ export default function SignInPage() {
 
               <div className="form-floating mb-3">
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
-                  id="floatingInputEmail"
+                  id="floatingInputUsername"
                   placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
-                <label htmlFor="floatingInputEmail">Email address</label>
+                <label htmlFor="floatingInputUsername">username</label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -90,6 +109,7 @@ export default function SignInPage() {
                 />
                 <label htmlFor="floatingPassword">Password</label>
               </div>
+              <p style={{ color: "red" }}>{error}</p>
               <button className="btn btn-primary w-100">
                 {form === 1 ? "SignUp" : "Login"}
               </button>

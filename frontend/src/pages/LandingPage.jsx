@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
-import "./LandingPage.css";
+import React, { useContext, useEffect } from "react";
+import "../pageStyles/LandingPage.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext.jsx";
 
 export default function LandingPage() {
+  const { setForm } = useContext(AuthContext);
+
   return (
     <div className="landingPageContainer">
       <nav className="navbar">
@@ -12,8 +15,12 @@ export default function LandingPage() {
           </div>
           <div className="navBarOptions">
             <Link to="/join">Join as guest</Link>
-            <Link to="/signin?form=1">Register</Link>
-            <Link to="/signin?form=0">Login</Link>
+            <Link to="/auth" onClick={() => setForm(1)}>
+              Register
+            </Link>
+            <Link to="/auth" onClick={() => setForm(0)}>
+              Login
+            </Link>
           </div>
         </div>
       </nav>
