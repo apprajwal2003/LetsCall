@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext.jsx";
 import "../pageStyles/Authentication.css";
-import httpStatus from "http-status";
 
 export default function Authentication() {
   const [name, setName] = useState("");
@@ -18,6 +17,8 @@ export default function Authentication() {
       if (form === 0) {
         //login
         let result = await handleLogin(username, password);
+        setPassword("");
+        setName("");
       }
       if (form === 1) {
         //signup

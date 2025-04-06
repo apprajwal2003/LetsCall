@@ -14,7 +14,13 @@ export default function LandingPage() {
             LetsCall
           </div>
           <div className="navBarOptions">
-            <Link to="/join">Join as guest</Link>
+            <Link
+              onClick={() => {
+                window.location.href = "/asdfl";
+              }}
+            >
+              Join as guest
+            </Link>
             <Link to="/auth" onClick={() => setForm(1)}>
               Register
             </Link>
@@ -29,7 +35,7 @@ export default function LandingPage() {
           "<span style={{ color: "#fff340" }}>Connect</span> instantly, anytime,
           anywhere <br />– Welcome to LetsCall!"
           <div className="getStarted mt-4">
-            <Link to="/home">
+            <Link to="/auth" onClick={() => setForm(1)}>
               <button className="getStartedButton">Get Started</button>
             </Link>
           </div>

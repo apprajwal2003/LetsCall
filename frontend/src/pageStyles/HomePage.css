@@ -1,0 +1,63 @@
+.HomePageContainer {
+  width: 100%;
+  height: 100vh;
+  color: white;
+  background: url("6600346_3296919.svg");
+  background-size: cover;
+}
+
+.HomePageContainer nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 4rem;
+  background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+  backdrop-filter: blur(12px); /* Blur effect */
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
+}
+
+.HomePageContainer nav .navbar-brand {
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.HomePageContainer nav .navBarOptions {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.HomePageContainer nav .navBarOptions a {
+  color: white;
+  text-decoration: none;
+}
+
+.HomePageContainer nav .navBarOptions a:hover {
+  color: #fff340;
+}
+
+.HomePageContainer .HomePageMainContent {
+  padding-inline: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70vh;
+}
+
+.HomePageContainer .HomePageMainContent .content {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  margin-left: 6rem;
+}
+
+.joinMeet {
+  background-color: #ffd000;
+  font-weight: 400;
+  padding: 0.2rem 1rem;
+  border-radius: 15px;
+}

@@ -10,12 +10,11 @@ const client = axios.create({
 });
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const authContext = useContext(AuthContext);
 
   const [form, setForm] = useState(0);
   const [userData, setUserData] = useState(authContext);
-
-  const router = useNavigate();
 
   const handleSignUp = async (name, username, password) => {
     try {
@@ -25,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         password: password,
       });
       if (request.status === httpStatus.CREATED) {
-        console.log(request.data.message);
+        setForm(0);
         return request.data.message;
       }
     } catch (error) {
@@ -42,11 +41,36 @@ export const AuthProvider = ({ children }) => {
 
       if (request.status === httpStatus.OK) {
         localStorage.setItem("token", request.data.token);
-        console.log(request.data.message);
+        navigate("/home");
         return request.data.message;
       }
     } catch (error) {
       throw error;
+    }
+  };
+
+  const getHistoryOfUser = async () => {
+    try {
+      let request = await client.get("/get_all_activity", {
+        params: {
+          token: localStorage.getItem("token"),
+        },
+      });
+      return request.data;
+    } catch (e) {
+      throw e;
+    }
+  };
+
+  const addToUserHistory = async (meetingCode) => {
+    try {
+      let request = await client.post("/add_to_activity", {
+        token: localStorage.getItem("token"),
+        meeting_code: meetingCode,
+      });
+      return request;
+    } catch (e) {
+      throw e;
     }
   };
 
@@ -57,6 +81,8 @@ export const AuthProvider = ({ children }) => {
     setUserData,
     handleSignUp,
     handleLogin,
+    getHistoryOfUser,
+    addToUserHistory,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
