@@ -2,11 +2,12 @@ import { createContext, useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import httpStatus from "http-status";
+import SERVER from "./../Server";
 
 export const AuthContext = createContext({});
 
 const client = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: SERVER,
 });
 
 export const AuthProvider = ({ children }) => {

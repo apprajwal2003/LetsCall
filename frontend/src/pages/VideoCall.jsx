@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import "../pageStyles/VideoCall.css";
 import { useNavigate } from "react-router-dom";
+import SERVER from "./../Server";
 
-const server_url = "http://localhost:8080";
+const server_url = SERVER;
 
 var connections = {};
 
