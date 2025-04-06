@@ -4,7 +4,7 @@ import Authentication from "./pages/Authentication";
 import { AuthProvider } from "./context/AuthContext";
 import VideoCall from "./pages/VideoCall";
 import HomePage from "./pages/HomePage";
-import History from "./pages/history";
+import History from "./pages/History";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
